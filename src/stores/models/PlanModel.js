@@ -72,12 +72,7 @@ export class PlanModel {
 
     const targetCourse = this.findCourse(result.draggableId);
     const targetTerm = this.findTerm(result.destination.droppableId);
-    const sourceTerm = new TermLocation(
-      this.years[targetCourse.yearIndex]
-      .terms[targetCourse.termIndex]
-    );
-
-    console.log(sourceTerm);
+    const sourceTerm = this.findTerm(result.source.droppableId);
 
     sourceTerm.termRef.courses.splice(targetCourse.courseIndex, 1);
     targetTerm.termRef.courses.splice(result.destination.index, 0, targetCourse.courseRef);

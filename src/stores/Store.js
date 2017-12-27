@@ -1,6 +1,5 @@
 // @flow
 
-import { observable } from 'mobx';
 import { PlanModel } from './models/PlanModel';
 
 export class Store {
