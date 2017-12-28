@@ -24,8 +24,10 @@
   "dependencies": {
     "aphrodite": "^0.3.1",
     "babel-register": "^6.8.0",
+    "clean-webpack-plugin": "^0.1.9",
     "css-loader": "^0.24.0",
     "empty": "^0.10.1",
+    "extract-text-webpack-plugin": "^1.0.1",
     "http-server": "^0.9.0",
     "mobx": "^3.4.0",
     "mobx-react": "^4.3.5",
@@ -34,7 +36,10 @@
     "react-dom": "^16.2.0",
     "reactstrap": "^5.0.0-alpha.4",
     "resolve-url-loader": "^1.6.0",
-    "style-loader": "^0.13.1"
+    "style-loader": "^0.13.1",
+    "webpack": "^1.15.0",
+    "webpack-dev-server": "^1.14.1",
+    "webpack-hot-middleware": "^2.10.0"
   },
   "devDependencies": {
     "babel-core": "^6.8.0",
@@ -59,7 +64,6 @@
     "babel-preset-stage-1": "^6.5.0",
     "babel-register": "^6.8.0",
     "babel-types": "^6.8.1",
-    "clean-webpack-plugin": "^0.1.9",
     "color": "^0.11.1",
     "enzyme": "^2.9.1",
     "enzyme-adapter-react-16": "^1.1.1",
@@ -70,7 +74,6 @@
     "eslint-plugin-jasmine": "^1.8.1",
     "eslint-plugin-jsx-a11y": "^1.0.4",
     "eslint-plugin-react": "^5.0.1",
-    "extract-text-webpack-plugin": "^1.0.1",
     "flow-bin": "^0.24.1",
     "jest-cli": "^12.0.2",
     "node-sass": "^4.7.2",
@@ -78,10 +81,7 @@
     "react-addons-test-utils": "^15.0.2",
     "react-hot-loader": "^3.0.0-beta.1",
     "redbox-react": "^1.2.3",
-    "sass-loader": "^6.0.6",
-    "webpack": "^1.15.0",
-    "webpack-dev-server": "^1.14.1",
-    "webpack-hot-middleware": "^2.10.0"
+    "sass-loader": "^6.0.6"
   },
   "jest": {
     "automock": false,
