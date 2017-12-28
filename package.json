@@ -11,7 +11,7 @@
     "lint": "eslint ./src",
     "build": "webpack --progress -p",
     "heroku-postbuild": "npm run build",
-    "start": "NODE_ENV=prod node server.js",
+    "start": "http-server",
     "devServer": "NODE_ENV=dev node server.js"
   },
   "keywords": [
