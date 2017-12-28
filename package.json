@@ -37,9 +37,7 @@
     "react-icons": "^2.2.7",
     "reactstrap": "^5.0.0-alpha.4",
     "resolve-url-loader": "^1.6.0",
-    "style-loader": "^0.13.1"
-  },
-  "devDependencies": {
+    "style-loader": "^0.13.1",
     "babel-core": "^6.8.0",
     "babel-eslint": "^6.0.4",
     "babel-jest": "^12.0.2",
