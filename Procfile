@@ -1,1 +1,1 @@
-web: npm run prodServer
+web: npm start
