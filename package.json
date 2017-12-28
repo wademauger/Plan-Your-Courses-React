@@ -10,7 +10,7 @@
     "typecheck": "flow check src",
     "lint": "eslint ./src",
     "build": "webpack --progress -p",
-    "postinstall": "npm run build",
+    "heroku-postbuild": "npm run build",
     "start": "NODE_ENV=prod http-server",
     "devServer": "NODE_ENV=dev node server.js"
   },
