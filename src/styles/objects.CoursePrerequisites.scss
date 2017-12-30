@@ -14,4 +14,13 @@
     height: $course-box-height;
     border-radius: 0;
   }
+
+  .dropdown {
+    font-weight: normal;
+  }
+
+  .dropdown-menu {
+    padding: 4px;
+    width: 300px;
+  }
 }

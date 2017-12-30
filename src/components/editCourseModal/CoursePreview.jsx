@@ -6,19 +6,18 @@ import '../../styles/objects.CoursePreview.scss';
 import '../../styles/utilities.shadow.scss';
 import '../../styles/utilities.center.scss';
 
-export const CoursePreview = observer(({course, color, type}) => (
+export const CoursePreview = observer(({parent, course, color, type}) => (
   <li
     className={'course shadow center ' + type}
     style={{ backgroundColor: color }}
   >
     <i className="fa fa-exclamation prereq-warning-badge"></i>
-    {type === 'prereq' ?
-        <div
-          className="deleteButton fade"
-          onClick={() => {console.log('deleting a prereq')}}
-        >
-          <FaTimesCircle size={24}/>
-        </div>: null
+    {type === 'prereq' ? <div
+      className="deleteButton fade"
+      onClick={parent.removePrereq.bind(parent, course)}
+    >
+      <FaTimesCircle size={24} />
+    </div>: null
     }
     <div className="wrapper">
       <div className="header-background"></div>

@@ -65,4 +65,12 @@ export class CourseModel {
     this.prereqs = newPrereqs;
   }
 
+  @action removePrereq(prereq) {
+    this.prereqs.remove(prereq);
+  }
+
+  getCourseCode() {
+    return `${this.dept}-${this.num}`;
+  }
+
 }

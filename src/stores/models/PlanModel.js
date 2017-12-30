@@ -159,4 +159,19 @@ export class PlanModel {
     }
   }
 
+  getAllCourses() {
+    //gets an array of courses in the format that
+    //https://react.semantic-ui.com/modules/dropdown expects
+    const allCourses = [];
+    this.years.forEach(year => {
+      year.terms.forEach(term => {
+        term.courses.forEach(course => {
+          const courseCode = course.getCourseCode();
+          return { key: courseCode, value: course.id, text: courseCode };
+        });
+      });
+    });
+    return allCourses;
+  }
+
 }

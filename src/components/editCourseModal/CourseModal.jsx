@@ -13,7 +13,6 @@ import {
   ModalHeader,
   ModalBody,
   ModalFooter } from 'reactstrap';
-import {  } from 'reactstrap';
 import { ChromePicker } from 'react-color';
 import { FaCaretUp, FaCaretDown } from 'react-icons/lib/fa';
 import { CoursePreview } from './CoursePreview';
@@ -115,6 +114,7 @@ export const CourseModal = observer(({courseModalState, colorScheme}) => (
             <CardBody>
               <Prerequisites
                 prereqs={courseModalState.courseCopy.prereqs}
+                course={courseModalState.courseCopy}
                 colorScheme={colorScheme}
                 state={courseModalState}
               />

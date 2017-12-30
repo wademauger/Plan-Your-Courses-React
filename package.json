@@ -42,6 +42,7 @@
     "react-icons": "^2.2.7",
     "reactstrap": "^5.0.0-alpha.4",
     "resolve-url-loader": "^1.6.0",
+    "semantic-ui-react": "^0.77.1",
     "serializr": "^1.1.14",
     "style-loader": "^0.13.1",
     "webpack": "^3.10.0"
