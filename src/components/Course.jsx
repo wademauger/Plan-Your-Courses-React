@@ -1,11 +1,11 @@
 import React from 'react';
-import { Observer } from 'mobx-react';
+import { inject, Observer } from 'mobx-react';
 import { Draggable } from 'react-beautiful-dnd';
 import '../styles/objects.Course.scss';
 import '../styles/utilities.shadow.scss';
 import '../styles/utilities.center.scss';
 
-export const Course = ({colorScheme, course, editCourse}) => (
+export const Course = inject('store')(({ store, course }) => (
   <Draggable
     draggableId={course.id}
     type="TERM-COURSE"
@@ -18,9 +18,9 @@ export const Course = ({colorScheme, course, editCourse}) => (
               {...provided.dragHandleProps}
               ref={provided.innerRef}
               className="course shadow center draggable"
-              onDoubleClick={() => { editCourse(course); }}
+              onDoubleClick={store.courseModalState.toggleIsOpen.bind(store.courseModalState, course)}
               style={{
-                backgroundColor: colorScheme.get(course.dept),
+                backgroundColor: store.mainPlan.colorScheme.get(course.dept),
                 opacity: snapshot.isDragging ? '.5' : '1',
                 ...provided.draggableStyle,
               }}
@@ -42,6 +42,6 @@ export const Course = ({colorScheme, course, editCourse}) => (
       </Observer>
     )}
   </Draggable>
-);
+));
 
 Course.displayName = 'Course';

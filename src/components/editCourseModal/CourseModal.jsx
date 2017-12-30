@@ -1,5 +1,5 @@
 import React from 'react';
-import { observer } from 'mobx-react';
+import { inject, observer } from 'mobx-react';
 import {
   Button,
   CardBody,
@@ -19,7 +19,7 @@ import { CoursePreview } from './CoursePreview';
 import { Prerequisites } from './CoursePrerequisites';
 import '../../styles/objects.CourseModal.scss';
 
-export const CourseModal = observer(({courseModalState, colorScheme}) => (
+export const CourseModal = inject('store')(observer(({ store: {courseModalState}}) => (
   <Modal
     isOpen={courseModalState.isOpen}
     toggle={courseModalState.toggleIsOpen.bind(courseModalState)}
@@ -113,10 +113,7 @@ export const CourseModal = observer(({courseModalState, colorScheme}) => (
           <Collapse isOpen={courseModalState.prereqsIsOpen}>
             <CardBody>
               <Prerequisites
-                prereqs={courseModalState.courseCopy.prereqs}
                 course={courseModalState.courseCopy}
-                colorScheme={colorScheme}
-                state={courseModalState}
               />
             </CardBody>
           </Collapse>
@@ -166,4 +163,4 @@ export const CourseModal = observer(({courseModalState, colorScheme}) => (
       </ModalFooter>
     </Form>
   </Modal>
-));
+)));

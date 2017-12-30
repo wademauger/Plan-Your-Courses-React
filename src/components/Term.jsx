@@ -1,5 +1,3 @@
-// @flow
-
 import React from 'react';
 import { Observer } from 'mobx-react';
 import { Draggable, Droppable } from 'react-beautiful-dnd';
@@ -10,7 +8,7 @@ import { inlineValidate } from '../utils/inlineValidate';
 import '../styles/objects.Term.scss';
 import '../styles/utilities.InlineEdit.scss';
 
-export const Term = ({ term, colorScheme, editCourse }) => {
+export const Term = ({ term }) => {
   return (
     <div className="term">
       <Draggable
@@ -66,10 +64,8 @@ export const Term = ({ term, colorScheme, editCourse }) => {
                       </div>
                       {term.courses.map(
                         course => <Course
-                          colorScheme={colorScheme}
                           course={course}
                           key={course.id}
-                          editCourse={editCourse}
                         />
                       )}
                       {droppableProvided.placeholder}

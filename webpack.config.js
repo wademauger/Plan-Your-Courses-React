@@ -38,9 +38,6 @@ if (env === 'dev') {
       },
       extensions: ['*', '.js', '.jsx'],
     },
-    resolveLoader: {
-      'fallback': path.join(__dirname, 'node_modules'),
-    },
     module: {
       loaders: [
         { test: /\.jsx?$/, exclude: /node_modules/, loaders: ['babel-loader', 'eslint-loader'], include: path.join(__dirname, 'src')},
