@@ -23,3 +23,16 @@
 .modal-dialog {
     max-width: 550px!important;
 }
+
+.advanced-section {
+  flex-grow: 3;
+}
+
+.lead {
+  border-bottom: 1px solid lightgray;
+  padding: 8px;
+}
+
+.expand-caret-state {
+  float: right;
+}

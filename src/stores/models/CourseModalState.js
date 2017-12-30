@@ -8,6 +8,15 @@ export class CourseModalState {
   isOpen;
 
   @observable
+  advancedIsOpen;
+
+  @observable
+  prereqsIsOpen;
+
+  @observable
+  prereqPickerIsOpen;
+
+  @observable
   courseRef;
 
   @observable
@@ -23,6 +32,9 @@ export class CourseModalState {
 
   constructor(plan) {
     this.isOpen = false;
+    this.advancedIsOpen = false;
+    this.prereqsIsOpen = false;
+    this.prereqPickerIsOpen = false;
     this.courseCopy = new CourseModel();
     this.courseRef = new CourseModel();
     this.planRef = plan;
@@ -34,6 +46,18 @@ export class CourseModalState {
       this.init(course);
     }
     this.isOpen = !this.isOpen;
+  }
+
+  @action.bound toggleAdvanced() {
+    this.advancedIsOpen = !this.advancedIsOpen;
+  }
+
+  @action.bound togglePrereqs() {
+    this.prereqsIsOpen = !this.prereqsIsOpen;
+  }
+
+  @action.bound togglePrereqPicker() {
+    this.prereqPickerIsOpen = !this.prereqPickerIsOpen;
   }
 
   @action init(course) {

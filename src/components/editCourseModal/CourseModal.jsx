@@ -1,7 +1,10 @@
 import React from 'react';
+import { observer } from 'mobx-react';
 import {
   Button,
+  CardBody,
   Col,
+  Collapse,
   Form,
   FormGroup,
   Input,
@@ -10,12 +13,14 @@ import {
   ModalHeader,
   ModalBody,
   ModalFooter } from 'reactstrap';
+import {  } from 'reactstrap';
 import { ChromePicker } from 'react-color';
+import { FaCaretUp, FaCaretDown } from 'react-icons/lib/fa';
 import { CoursePreview } from './CoursePreview';
-import { observer } from 'mobx-react';
+import { Prerequisites } from './CoursePrerequisites';
 import '../../styles/objects.CourseModal.scss';
 
-export const CourseModal = observer(({courseModalState}) => (
+export const CourseModal = observer(({courseModalState, colorScheme}) => (
   <Modal
     isOpen={courseModalState.isOpen}
     toggle={courseModalState.toggleIsOpen.bind(courseModalState)}
@@ -40,13 +45,13 @@ export const CourseModal = observer(({courseModalState}) => (
           <div className="preview-modal-left">
             <div className="course-preview-wrap">
               <CoursePreview
+                type={"course-preview"}
                 course={courseModalState.courseCopy}
                 color={courseModalState.previewColor}
               />
             </div>
           </div>
           <div className="preview-modal-right">
-
             <FormGroup row>
               <Label for="deptInput" sm={4}>Department</Label>
               <Col sm={8}>
@@ -96,20 +101,52 @@ export const CourseModal = observer(({courseModalState}) => (
                 />
               </Col>
             </FormGroup>
-
-            <FormGroup row>
-              <Label for="colorPicker" sm={4}>Color</Label>
-              <Col sm={8}>
-                <ChromePicker
-                  id="colorPicker"
-                  color={courseModalState.previewColor}
-                  onChange={courseModalState.handleSelectColor.bind(courseModalState)}
-                />
-              </Col>
-            </FormGroup>
-
           </div>
         </div>
+
+        <div className="advanced-section">
+          <div className="lead" onClick={courseModalState.togglePrereqs}>
+            Prerequisites
+            <div className="expand-caret-state">
+              {courseModalState.prereqsIsOpen ? <FaCaretDown /> : <FaCaretUp />}
+            </div>
+          </div>
+          <Collapse isOpen={courseModalState.prereqsIsOpen}>
+            <CardBody>
+              <Prerequisites
+                prereqs={courseModalState.courseCopy.prereqs}
+                colorScheme={colorScheme}
+                state={courseModalState}
+              />
+            </CardBody>
+          </Collapse>
+        </div>
+
+        <div className="advanced-section">
+          <div className="lead" onClick={courseModalState.toggleAdvanced}>
+            Advanced
+            <div className="expand-caret-state">
+              {courseModalState.advancedIsOpen ? <FaCaretDown /> : <FaCaretUp />}
+            </div>
+          </div>
+          <Collapse isOpen={courseModalState.advancedIsOpen}>
+            <CardBody>
+
+              <FormGroup row>
+                <Label for="creditsInput" sm={6}>Color</Label>
+                <Col sm={4}>
+                  <ChromePicker
+                    id="colorPicker"
+                    color={courseModalState.previewColor}
+                    onChange={courseModalState.handleSelectColor.bind(courseModalState)}
+                  />
+                </Col>
+              </FormGroup>
+
+            </CardBody>
+          </Collapse>
+        </div>
+
       </ModalBody>
       <ModalFooter>
         <Button

@@ -1,0 +1,17 @@
+@import 'settings.constants.scss';
+
+.prereq-box {
+  margin-top: 10px; 
+  padding: 6px;
+  flex-direction: row!important;
+
+  .btn-group {
+    margin: 4px;
+  }
+
+  .btn {
+    width: $course-box-width;
+    height: $course-box-height;
+    border-radius: 0;
+  }
+}

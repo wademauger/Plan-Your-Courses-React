@@ -1,5 +1,3 @@
-// @flow
-
 import React from 'react';
 import { Observer } from 'mobx-react';
 import { Draggable, Droppable } from 'react-beautiful-dnd';
