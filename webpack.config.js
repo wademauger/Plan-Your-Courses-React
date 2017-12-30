@@ -4,6 +4,7 @@ const path = require('path');
 const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const env = process.env.NODE_ENV || 'prod';
 const host = process.env.HOST || 'localhost';
 const port = process.env.PORT || 3000;
@@ -81,10 +82,19 @@ if (env === 'dev') {
       new webpack.optimize.DedupePlugin(),
       new webpack.optimize.OccurenceOrderPlugin(),
       new webpack.optimize.UglifyJsPlugin({
-        compress: {
-          warnings: false,
-        },
-      }),
+      compress: {
+        screw_ie8: true,
+        warnings: false,
+      },
+      mangle: {
+        screw_ie8: true,
+      },
+      output: {
+        comments: false,
+        screw_ie8: true,
+      },
+      sourceMap: false,
+    }),
     ],
   }
 }
