@@ -15,8 +15,9 @@ export class PlanModel {
   @serializable
   isPublic = false;
 
+  @observable
   @serializable(map())
-  colorScheme = new Map();
+  colorScheme = observable.map({'DEPT': 'green'});
 
   @observable
   @serializable(list(object(YearModel)))
@@ -29,7 +30,7 @@ export class PlanModel {
   constructor(
     title = 'My New Course Plan',
     isPublic = false,
-    colorScheme = observable.map(),
+    colorScheme = observable.map({'DEPT': 'green'}),
     years = [],
   ) {
     this.title = title;

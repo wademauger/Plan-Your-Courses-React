@@ -19,7 +19,7 @@ export class Store {
 
   constructor() {
     this.mainPlan = new PlanModel();
-    this.courseModalState = new CourseModalState(this.mainPlan.colorScheme, this.mainPlan.editCourse);
+    this.courseModalState = new CourseModalState(this.mainPlan);
 
     // Seed state, for dev only
     this.mainPlan.addYear('First Year');
@@ -96,6 +96,9 @@ export class Store {
 
   @action.bound loadJSON(json) {
     this.mainPlan = deserialize(PlanModel, json, () => {});
+    // Because the CourseModalState is instantiated from a class
+    // MobX won't keep the reference live during serialization
+    this.courseModalState = new CourseModalState(this.mainPlan);
   }
 
 }

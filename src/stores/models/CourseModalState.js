@@ -10,7 +10,7 @@ export class CourseModalState {
   courseRef;
 
   @observable
-  colorSchemeRef;
+  planRef;
 
   @observable
   courseCopy;
@@ -20,11 +20,11 @@ export class CourseModalState {
 
   creditsInputRef;
 
-  constructor(colorScheme) {
+  constructor(plan) {
     this.isOpen = false;
     this.courseCopy = new CourseModel();
     this.courseRef = new CourseModel();
-    this.colorSchemeRef = colorScheme;
+    this.planRef = plan;
   }
 
   @action toggleIsOpen(course) {
@@ -44,12 +44,12 @@ export class CourseModalState {
       course.credits,
       course.prereqs
     ));
-    this.previewColor = this.colorSchemeRef.get(course.dept);
+    this.previewColor = this.planRef.colorScheme.get(course.dept);
   }
 
   handleDeptChange(changeEvent) {
     const newDept = changeEvent.target.value.toUpperCase();
-    const deptColorRef = this.colorSchemeRef.get(newDept);
+    const deptColorRef = this.planRef.colorScheme.get(newDept);
     if (deptColorRef) {
       this.previewColor = deptColorRef;
     }
@@ -86,7 +86,7 @@ export class CourseModalState {
     this.courseRef.setNum(this.courseCopy.num);
     this.courseRef.setCredits(this.courseCopy.credits);
     this.courseRef.setPrereqs(this.courseCopy.prereqs);
-    this.colorSchemeRef.set(this.courseRef.dept, this.previewColor);
+    this.planRef.colorScheme.set(this.courseRef.dept, this.previewColor);
     this.isOpen = false;
   }
 
