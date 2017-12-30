@@ -26,7 +26,11 @@ export const CourseModal = observer(({courseModalState}) => (
       <div className="preview-modal-body">
         <div className="preview-modal-left">
           <div className="course-preview-wrap">
-            <CoursePreview course={courseModalState.courseCopy} color={courseModalState.colorCopy} />
+            <CoursePreview
+              course={courseModalState.courseCopy}
+              colorScheme={courseModalState.colorSchemeRef}
+              defaultColor={courseModalState.colorCopy}
+            />
           </div>
         </div>
         <div className="preview-modal-right">
@@ -97,8 +101,8 @@ export const CourseModal = observer(({courseModalState}) => (
       </div>
     </ModalBody>
     <ModalFooter>
-      <Button color="primary" onClick={() => {}}>Do Something</Button>{' '}
-      <Button color="secondary" onClick={() => {}}>Cancel</Button>
+      <Button color="secondary" onClick={courseModalState.toggleIsOpen.bind(courseModalState)}>Cancel</Button>
+      <Button color="primary" onClick={courseModalState.saveChanges.bind(courseModalState)}>Save</Button>{' '}
     </ModalFooter>
   </Modal>
 ));

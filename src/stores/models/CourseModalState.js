@@ -80,4 +80,14 @@ export class CourseModalState {
     this.colorCopy = color.hex;
   }
 
+  @action.bound saveChanges() {
+    this.courseRef.name = this.courseCopy.name;
+    this.courseRef.dept = this.courseCopy.dept;
+    this.courseRef.num = this.courseCopy.num;
+    this.courseRef.credits = this.courseCopy.credits; 
+    this.courseRef.prereqs = this.courseCopy.prereqs; 
+    this.colorSchemeRef.set(this.courseRef.dept, this.colorCopy);
+    this.isOpen = false;
+  }
+
 }
