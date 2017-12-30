@@ -10,7 +10,7 @@ import {
   ModalHeader,
   ModalBody,
   ModalFooter } from 'reactstrap';
-import { SketchPicker } from 'react-color';
+import { ChromePicker } from 'react-color';
 import { CoursePreview } from './CoursePreview';
 import { observer } from 'mobx-react';
 import '../../styles/objects.CourseModal.scss';
@@ -87,9 +87,9 @@ export const CourseModal = observer(({courseModalState}) => (
             <FormGroup row>
               <Label for="colorPicker" sm={4}>Color</Label>
               <Col sm={8}>
-                <SketchPicker
+                <ChromePicker
                   id="colorPicker"
-                  color={courseModalState.colorCopy}
+                  color={courseModalState.previewColor}
                   onChange={courseModalState.handleSelectColor.bind(courseModalState)}
                 />
               </Col>
