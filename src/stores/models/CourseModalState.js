@@ -16,7 +16,7 @@ export class CourseModalState {
   courseCopy;
 
   @observable
-  colorCopy;
+  previewColor;
 
   creditsInputRef;
 
@@ -44,14 +44,14 @@ export class CourseModalState {
       course.credits,
       course.prereqs
     ));
-    this.colorCopy = this.colorSchemeRef.get(course.dept);
+    this.previewColor = this.colorSchemeRef.get(course.dept);
   }
 
   handleDeptChange(changeEvent) {
     const newDept = changeEvent.target.value.toUpperCase();
     const deptColorRef = this.colorSchemeRef.get(newDept);
     if (deptColorRef) {
-      this.colorCopy = deptColorRef.color;
+      this.previewColor = deptColorRef;
     }
     this.courseCopy.setDept(newDept);
   }
@@ -77,15 +77,15 @@ export class CourseModalState {
   }
 
   handleSelectColor(color) {
-    this.colorCopy = color.hex;
+    this.previewColor = color.hex;
   }
 
   @action.bound saveChanges() {
     this.courseRef.name = this.courseCopy.name;
     this.courseRef.dept = this.courseCopy.dept;
     this.courseRef.num = this.courseCopy.num;
-    this.courseRef.credits = this.courseCopy.credits; 
-    this.courseRef.prereqs = this.courseCopy.prereqs; 
+    this.courseRef.credits = this.courseCopy.credits;
+    this.courseRef.prereqs = this.courseCopy.prereqs;
     this.colorSchemeRef.set(this.courseRef.dept, this.colorCopy);
     this.isOpen = false;
   }

@@ -16,7 +16,7 @@ export const Course = observer( ({colorScheme, course, editCourse}) => (
           {...provided.dragHandleProps}
           ref={provided.innerRef}
           className="course shadow center draggable"
-          onDoubleClick={ () => {editCourse(course);} }
+          onDoubleClick={() => { editCourse(course); }}
           style={{
             backgroundColor: colorScheme.get(course.dept),
             opacity: snapshot.isDragging ? '.5' : '1',

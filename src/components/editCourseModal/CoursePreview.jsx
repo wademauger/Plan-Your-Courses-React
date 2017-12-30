@@ -5,10 +5,10 @@ import '../../styles/objects.CoursePreview.scss';
 import '../../styles/utilities.shadow.scss';
 import '../../styles/utilities.center.scss';
 
-export const CoursePreview = observer(({course, colorScheme, defaultColor}) => (
+export const CoursePreview = observer(({course, color}) => (
   <li
     className="course shadow center course-preview"
-    style={{ backgroundColor: colorScheme.get(course.dept) || defaultColor }}
+    style={{ backgroundColor: color }}
   >
     <i className="fa fa-exclamation prereq-warning-badge"></i>
     <div className="wrapper">

@@ -46,7 +46,7 @@ export class CourseModel {
   }
 
   @action.bound setName(newName) {
-    this.name = newName;  
+    this.name = newName;
   }
 
   @action.bound setDept(newDept) {
@@ -54,11 +54,11 @@ export class CourseModel {
   }
 
   @action.bound setNum(newNum) {
-    this.num = newNum;  
+    this.num = newNum;
   }
 
   @action.bound setCredits(newCredits) {
-    this.credits = newCredits;  
+    this.credits = newCredits;
   }
 
 }

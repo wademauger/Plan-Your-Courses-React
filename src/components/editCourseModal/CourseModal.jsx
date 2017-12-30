@@ -28,8 +28,7 @@ export const CourseModal = observer(({courseModalState}) => (
           <div className="course-preview-wrap">
             <CoursePreview
               course={courseModalState.courseCopy}
-              colorScheme={courseModalState.colorSchemeRef}
-              defaultColor={courseModalState.colorCopy}
+              color={courseModalState.previewColor}
             />
           </div>
         </div>
