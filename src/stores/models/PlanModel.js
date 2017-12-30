@@ -1,10 +1,9 @@
 import { action, observable } from 'mobx';
 import { YearModel } from './YearModel';
-import { ColorModel } from './ColorModel';
 import { CourseLocation } from './CourseLocation';
 import { TermLocation } from './TermLocation';
 import { YearLocation } from './YearLocation';
-import { serializable, identifier, list, object } from 'serializr';
+import { serializable, identifier, list, map, object } from 'serializr';
 import { ID } from '../../utils/id';
 
 export class PlanModel {
@@ -17,8 +16,8 @@ export class PlanModel {
   isPublic = false;
 
   @observable
-  @serializable(list(object(ColorModel)))
-  colorScheme = [];
+  @serializable(map())
+  colorScheme = new Map();
 
   @observable
   @serializable(list(object(YearModel)))
@@ -31,7 +30,7 @@ export class PlanModel {
   constructor(
     title = 'My New Course Plan',
     isPublic = false,
-    colorScheme = [],
+    colorScheme = new Map(),
     years = [],
   ) {
     this.title = title;
@@ -56,7 +55,7 @@ export class PlanModel {
     dept,
     color,
   ) {
-    this.colorScheme.push(new ColorModel(dept, color));
+    this.colorScheme.set(dept, color);
   }
 
   findCourse(courseId) {

@@ -44,20 +44,12 @@ export class CourseModalState {
       course.credits,
       course.prereqs
     ));
-    this.colorCopy = this.colorSchemeRef.find(thisColor => thisColor.dept === course.dept).color;
+    this.colorCopy = this.colorSchemeRef.get(course.dept);
   }
 
   handleDeptChange(changeEvent) {
     const newDept = changeEvent.target.value.toUpperCase();
-
-    console.log(newDept, this.colorSchemeRef);
-    // This will be undefined if there is no
-    // Department with this code, otherwise it
-    // will reference that Department's color str
-    const deptColorRef = this.colorSchemeRef.find(
-      thisColor => thisColor.dept = newDept
-    );
-    console.log(deptColorRef)
+    const deptColorRef = this.colorSchemeRef.get(newDept);
     if (deptColorRef) {
       this.colorCopy = deptColorRef.color;
     }
