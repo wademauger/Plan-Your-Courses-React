@@ -42,7 +42,8 @@
     "reactstrap": "^5.0.0-alpha.4",
     "resolve-url-loader": "^1.6.0",
     "serializr": "^1.1.14",
-    "style-loader": "^0.13.1"
+    "style-loader": "^0.13.1",
+    "webpack": "^3.10.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
@@ -79,7 +80,7 @@
     "eslint-plugin-jasmine": "^1.8.1",
     "eslint-plugin-jsx-a11y": "^1.0.4",
     "eslint-plugin-react": "^5.0.1",
-    "extract-text-webpack-plugin": "^1.0.1",
+    "extract-text-webpack-plugin": "^2.1.2",
     "flow-bin": "^0.24.1",
     "jest-cli": "^12.0.2",
     "node-sass": "^4.7.2",
@@ -90,7 +91,6 @@
     "riek": "^1.1.0",
     "sass-loader": "^6.0.6",
     "uglifyjs-webpack-plugin": "^1.1.5",
-    "webpack": "^1.15.0",
     "webpack-dev-server": "^1.14.1",
     "webpack-hot-middleware": "^2.10.0"
   },
