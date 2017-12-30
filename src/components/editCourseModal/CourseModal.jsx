@@ -21,24 +21,37 @@ export const CourseModal = observer(({courseModalState}) => (
     toggle={courseModalState.toggleIsOpen.bind(courseModalState)}
     className="course-modal"
   >
-    <ModalHeader toggle={courseModalState.toggleIsOpen.bind(courseModalState)}>Edit Course</ModalHeader>
-    <ModalBody>
-      <div className="preview-modal-body">
-        <div className="preview-modal-left">
-          <div className="course-preview-wrap">
-            <CoursePreview
-              course={courseModalState.courseCopy}
-              color={courseModalState.previewColor}
-            />
+    <Form
+      onKeyDown={(e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          courseModalState.saveChanges.bind(courseModalState)();
+        }
+      }}
+      onSubmit={(e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        courseModalState.saveChanges.bind(courseModalState)();
+      }}
+    >
+      <ModalHeader toggle={courseModalState.toggleIsOpen.bind(courseModalState)}>Edit Course</ModalHeader>
+      <ModalBody>
+        <div className="preview-modal-body">
+          <div className="preview-modal-left">
+            <div className="course-preview-wrap">
+              <CoursePreview
+                course={courseModalState.courseCopy}
+                color={courseModalState.previewColor}
+              />
+            </div>
           </div>
-        </div>
-        <div className="preview-modal-right">
-          <Form>
+          <div className="preview-modal-right">
 
             <FormGroup row>
               <Label for="deptInput" sm={4}>Department</Label>
               <Col sm={8}>
                 <Input
+                  autoFocus
                   name="dept"
                   id="deptInput"
                   onChange={courseModalState.handleDeptChange.bind(courseModalState)}
@@ -95,13 +108,25 @@ export const CourseModal = observer(({courseModalState}) => (
               </Col>
             </FormGroup>
 
-          </Form>
+          </div>
         </div>
-      </div>
-    </ModalBody>
-    <ModalFooter>
-      <Button color="secondary" onClick={courseModalState.toggleIsOpen.bind(courseModalState)}>Cancel</Button>
-      <Button color="primary" onClick={courseModalState.saveChanges.bind(courseModalState)}>Save</Button>{' '}
-    </ModalFooter>
+      </ModalBody>
+      <ModalFooter>
+        <Button
+          color="secondary"
+          onClick={courseModalState.toggleIsOpen.bind(courseModalState)}
+          type="button"
+        >
+          Cancel
+        </Button>
+        <Button
+          color="primary"
+          onClick={courseModalState.saveChanges.bind(courseModalState)}
+          type="submit"
+        >
+          Save
+        </Button>{' '}
+      </ModalFooter>
+    </Form>
   </Modal>
 ));

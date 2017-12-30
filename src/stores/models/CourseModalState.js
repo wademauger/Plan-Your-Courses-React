@@ -1,5 +1,6 @@
 import { action, observable } from 'mobx';
 import { CourseModel } from './CourseModel';
+import startCase from 'lodash.startcase';
 
 export class CourseModalState {
 
@@ -61,7 +62,8 @@ export class CourseModalState {
   }
 
   handleTitleChange(changeEvent) {
-    this.courseCopy.setName(changeEvent.target.value);
+    const newName = startCase(changeEvent.target.value);
+    this.courseCopy.setName(newName);
   }
 
   setCreditsInputRef(ref) {
@@ -88,6 +90,7 @@ export class CourseModalState {
     this.courseRef.setPrereqs(this.courseCopy.prereqs);
     this.planRef.colorScheme.set(this.courseRef.dept, this.previewColor);
     this.isOpen = false;
+    return false;
   }
 
 }
