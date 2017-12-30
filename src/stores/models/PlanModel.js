@@ -38,7 +38,6 @@ export class PlanModel {
     this.isPublic = isPublic;
     this.years = years;
     this.colorScheme = colorScheme;
-    this.colorScheme.push(new ColorModel());
     this.id = ID();
   }
 
@@ -54,8 +53,8 @@ export class PlanModel {
   }
 
   @action.bound addColor(
-    dept = 'DEPT',
-    color = 'rgb(12, 148, 0)',
+    dept,
+    color,
   ) {
     this.colorScheme.push(new ColorModel(dept, color));
   }

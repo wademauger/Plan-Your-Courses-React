@@ -1,5 +1,3 @@
-// @flow
-
 import React from 'react';
 import { observer } from 'mobx-react';
 import { Draggable } from 'react-beautiful-dnd';
@@ -7,7 +5,7 @@ import '../styles/objects.Course.scss';
 import '../styles/utilities.shadow.scss';
 import '../styles/utilities.center.scss';
 
-export const Course = observer( ({colorScheme, course}) => (
+export const Course = observer( ({colorScheme, course, editCourse}) => (
   <Draggable
     draggableId={course.id}
     type="TERM-COURSE"
@@ -18,6 +16,7 @@ export const Course = observer( ({colorScheme, course}) => (
           {...provided.dragHandleProps}
           ref={provided.innerRef}
           className="course shadow center draggable"
+          onDoubleClick={ () => {editCourse(course);} }
           style={{
             backgroundColor: colorScheme.find(
               thisColor => thisColor.dept === course.dept

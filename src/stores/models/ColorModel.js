@@ -1,4 +1,4 @@
-import { observable } from 'mobx';
+import { action, observable } from 'mobx';
 import { serializable, identifier } from 'serializr';
 import { ID } from '../../utils/id';
 
@@ -24,5 +24,9 @@ export class ColorModel {
     this.color = color;
     this.id = ID();
   }
+
+  @action.bound setColor(newColor) {
+    this.color = newColor;
+  } 
 
 }

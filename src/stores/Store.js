@@ -2,19 +2,26 @@
 
 import { action, observable } from 'mobx';
 import { PlanModel } from './models/PlanModel';
+import { CourseModalState } from './models/CourseModalState';
 import { serialize, deserialize } from 'serializr';
 import { saveAs } from 'file-saver';
 
 export class Store {
 
   @observable
-  mainPlan = new PlanModel();
+  mainPlan;
+
+  @observable
+  courseModalState;
 
   @observable
   saveDropdownOpened = false;
 
   constructor() {
-    this. mainPlan = new PlanModel();
+    this.mainPlan = new PlanModel();
+    this.courseModalState = new CourseModalState(this.mainPlan.colorScheme);
+
+    // Seed state, for dev only
     this.mainPlan.addYear('First Year');
     this.mainPlan.years[0].addTerm();
     this.mainPlan.years[0].addTerm('Spring');

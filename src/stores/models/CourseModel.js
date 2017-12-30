@@ -1,4 +1,4 @@
-import { observable } from 'mobx';
+import { action, observable } from 'mobx';
 import { serializable, identifier, list, reference, getDefaultModelSchema } from 'serializr';
 import { ID } from '../../utils/id';
 
@@ -43,6 +43,22 @@ export class CourseModel {
     getDefaultModelSchema(CourseModel).props.prereqs = list(
       reference(CourseModel)
     );
+  }
+
+  @action.bound setName(newName) {
+    this.name = newName;  
+  }
+
+  @action.bound setDept(newDept) {
+    this.dept = newDept;
+  }
+
+  @action.bound setNum(newNum) {
+    this.num = newNum;  
+  }
+
+  @action.bound setCredits(newCredits) {
+    this.credits = newCredits;  
   }
 
 }

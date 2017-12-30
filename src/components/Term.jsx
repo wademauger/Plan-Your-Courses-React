@@ -10,7 +10,7 @@ import { inlineValidate } from '../utils/inlineValidate';
 import '../styles/objects.Term.scss';
 import '../styles/utilities.InlineEdit.scss';
 
-export const Term = ({ term, colorScheme }) => {
+export const Term = ({ term, colorScheme, editCourse }) => {
   return (
     <div className="term">
       <Draggable
@@ -69,6 +69,7 @@ export const Term = ({ term, colorScheme }) => {
                           colorScheme={colorScheme}
                           course={course}
                           key={course.id}
+                          editCourse={editCourse}
                         />
                       )}
                       {droppableProvided.placeholder}

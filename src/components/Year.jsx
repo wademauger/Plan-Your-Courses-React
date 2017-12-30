@@ -10,7 +10,7 @@ import { inlineValidate } from '../utils/inlineValidate';
 import '../styles/objects.Year.scss';
 import '../styles/utilities.InlineEdit.scss';
 
-export const Year = ({ year, colorScheme }) => {
+export const Year = ({ year, colorScheme, editCourse }) => {
   return (
     <Draggable
       draggableId={year.id}
@@ -60,6 +60,7 @@ export const Year = ({ year, colorScheme }) => {
                               courses={term.courses}
                               term={term}
                               colorScheme={colorScheme}
+                              editCourse={editCourse}
                             />
                           )}
                           {droppableProvided.placeholder}

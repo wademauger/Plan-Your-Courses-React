@@ -10,7 +10,7 @@ import { inlineValidate } from '../utils/inlineValidate';
 import '../styles/objects.Plan.scss';
 import '../styles/utilities.InlineEdit.scss';
 
-export const Plan = ({ plan }) => {
+export const Plan = ({ plan, editCourse }) => {
   return (
     <Droppable droppableId={plan.title} type="PLAN-YEAR" direction="horizontal">
       {(provided) => (
@@ -35,6 +35,7 @@ export const Plan = ({ plan }) => {
                       key={year.id}
                       year={year}
                       colorScheme={plan.colorScheme}
+                      editCourse={editCourse}
                     />
                   )}
                   {provided.placeholder}
