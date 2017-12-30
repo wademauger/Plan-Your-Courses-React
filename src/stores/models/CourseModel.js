@@ -61,4 +61,8 @@ export class CourseModel {
     this.credits = newCredits;
   }
 
+  @action.bound setPrereqs(newPrereqs) {
+    this.prereqs = newPrereqs;
+  }
+
 }

@@ -161,4 +161,5 @@ export class PlanModel {
       targetTerm.termRef.courses.splice(result.destination.index, 0, targetCourse.courseRef);
     }
   }
+
 }

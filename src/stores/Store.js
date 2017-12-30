@@ -19,7 +19,7 @@ export class Store {
 
   constructor() {
     this.mainPlan = new PlanModel();
-    this.courseModalState = new CourseModalState(this.mainPlan.colorScheme);
+    this.courseModalState = new CourseModalState(this.mainPlan.colorScheme, this.mainPlan.editCourse);
 
     // Seed state, for dev only
     this.mainPlan.addYear('First Year');

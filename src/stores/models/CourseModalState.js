@@ -81,12 +81,12 @@ export class CourseModalState {
   }
 
   @action.bound saveChanges() {
-    this.courseRef.name = this.courseCopy.name;
-    this.courseRef.dept = this.courseCopy.dept;
-    this.courseRef.num = this.courseCopy.num;
-    this.courseRef.credits = this.courseCopy.credits;
-    this.courseRef.prereqs = this.courseCopy.prereqs;
-    this.colorSchemeRef.set(this.courseRef.dept, this.colorCopy);
+    this.courseRef.setName(this.courseCopy.name);
+    this.courseRef.setDept(this.courseCopy.dept);
+    this.courseRef.setNum(this.courseCopy.num);
+    this.courseRef.setCredits(this.courseCopy.credits);
+    this.courseRef.setPrereqs(this.courseCopy.prereqs);
+    this.colorSchemeRef.set(this.courseRef.dept, this.previewColor);
     this.isOpen = false;
   }
 

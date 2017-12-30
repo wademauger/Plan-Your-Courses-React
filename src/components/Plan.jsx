@@ -3,11 +3,10 @@
 import React from 'react';
 import { Observer } from 'mobx-react';
 import { Droppable } from 'react-beautiful-dnd';
-import { Button } from 'reactstrap';
-import { RIEInput } from 'riek';
+import { Button } from 'reactstrap'; import { RIEInput } from 'riek';
 import { Year } from './Year';
 import { inlineValidate } from '../utils/inlineValidate';
-import '../styles/objects.Plan.scss';
+mport '../styles/objects.Plan.scss';
 import '../styles/utilities.InlineEdit.scss';
 
 export const Plan = ({ plan, editCourse }) => {
@@ -42,7 +41,8 @@ export const Plan = ({ plan, editCourse }) => {
                   <Button
                     color="link"
                     onClick={() => plan.addYear()}
-                  >+</Button>
+                  >+
+                  </Button>
                 </div>
               </div>
             </div>
