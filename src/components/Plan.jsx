@@ -1,12 +1,10 @@
-// @flow
-
 import React from 'react';
 import { Observer } from 'mobx-react';
 import { Droppable } from 'react-beautiful-dnd';
 import { Button } from 'reactstrap'; import { RIEInput } from 'riek';
 import { Year } from './Year';
 import { inlineValidate } from '../utils/inlineValidate';
-mport '../styles/objects.Plan.scss';
+import '../styles/objects.Plan.scss';
 import '../styles/utilities.InlineEdit.scss';
 
 export const Plan = ({ plan, editCourse }) => {
