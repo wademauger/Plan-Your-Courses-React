@@ -31,6 +31,9 @@ export class CourseModalState {
   @observable
   addPrereqStage = [];
 
+  @observable
+  addUnlistedModalIsOpen;
+
   creditsInputRef;
 
   constructor(plan) {
@@ -38,6 +41,7 @@ export class CourseModalState {
     this.advancedIsOpen = false;
     this.prereqsIsOpen = false;
     this.prereqPickerIsOpen = false;
+    this.addUnlistedModalIsOpen = false;
     this.courseCopy = new CourseModel();
     this.courseRef = new CourseModel();
     this.planRef = plan;
@@ -68,6 +72,10 @@ export class CourseModalState {
 
   @action.bound togglePrereqPicker() {
     this.prereqPickerIsOpen = !this.prereqPickerIsOpen;
+  }
+
+  @action.bound toggleAddUnlisted() {
+    this.addUnlistedModalIsOpen = !this.addUnlistedModalIsOpen;
   }
 
   @action init(course) {
@@ -128,13 +136,24 @@ export class CourseModalState {
     this.toggleIsOpen();
   }
 
+  @action.bound addUnlistedPrereq(prereq) {
+    // If there are no duplicate courses in the prereq list,
+    // then add this course to the list
+    const dupCourse = this.courseCopy.prereqs.find(thisReq => {
+        ((thisReq.dept === prereq.dept) && (thisReq.num === prereq.num))
+    });
+    if (!dupCourse) this.courseCopy.prereqs.push(prereq);
+  }
+
   @action handleAddStagedPrereq(event, data) {
     this.addPrereqStage.replace(data.value);
   }
 
   @action commitStagedPrereqs() {
     const dedupedStage = this.addPrereqStage.filter(stagedReq => {
-      const foundDup = this.courseCopy.prereqs.find(req => req.id === stagedReq.id)
+      const foundDup = this.courseCopy.prereqs.find(req =>
+        ((req.dept === stagedReq.dept) && (req.num === stagedReq.num))
+      );
       if (!foundDup) return true;
     });
     const mergedStage = Array.concat(dedupedStage, this.courseCopy.prereqs.peek());

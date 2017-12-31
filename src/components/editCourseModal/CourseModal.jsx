@@ -31,9 +31,7 @@ export const CourseModal = inject('store')(observer(({ store: {courseModalState}
       onKeyDown={(e) => {
         if (e.key === 'Enter') {
           e.preventDefault();
-          if (courseModalState.prereqPickerIsOpen) {
-            console.log('execute add prereqs');
-          } else {
+          if (!courseModalState.prereqPickerIsOpen) {
             courseModalState.saveChanges.bind(courseModalState)();
           }
         }
@@ -179,7 +177,6 @@ export const CourseModal = inject('store')(observer(({ store: {courseModalState}
         </Button>
         <Button
           color="primary"
-          onClick={courseModalState.saveChanges.bind(courseModalState)}
           type="submit"
         >
           Save

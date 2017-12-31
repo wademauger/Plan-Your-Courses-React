@@ -1,4 +1,4 @@
-import { serializable, identifier, list, reference, getDefaultModelSchema } from 'serializr';
+import { serializable, identifier } from 'serializr';
 import { ID } from '../../utils/id';
 
 export class PrereqCourse {
@@ -7,14 +7,14 @@ export class PrereqCourse {
   dept;
 
   @serializable
-  courseNum;
+  num;
 
   @serializable(identifier())
   id;
 
-  constructor(dept, courseNum) {
+  constructor(dept, num) {
     this.dept = dept;
-    this.courseNum = courseNum;
+    this.num = num;
     this.id = ID();
   }
 

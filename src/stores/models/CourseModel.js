@@ -1,5 +1,5 @@
 import { action, observable } from 'mobx';
-import { serializable, identifier, list, reference, getDefaultModelSchema } from 'serializr';
+import { serializable, identifier, list, object } from 'serializr';
 import { PrereqCourse } from './PrereqCourse';
 import { ID } from '../../utils/id';
 
@@ -30,7 +30,7 @@ export class CourseModel {
   credits = 0;
 
   @observable
-  @serializable(list(PrereqCourse))
+  @serializable(list(object(PrereqCourse)))
   prereqs = [];
 
   constructor(

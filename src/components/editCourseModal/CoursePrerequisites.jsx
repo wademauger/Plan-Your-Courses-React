@@ -9,6 +9,7 @@ import {
   DropdownItem } from 'reactstrap';
 import { Dropdown } from 'semantic-ui-react';
 import { CoursePreview } from './CoursePreview';
+import { AddUnlistedModal } from './AddUnlistedModal';
 import { FaPlusCircle } from 'react-icons/lib/fa';
 import '../../styles/objects.CoursePrerequisites.scss';
 import '../../styles/utilities.shadow.scss';
@@ -34,7 +35,9 @@ export const Prerequisites = inject('store')(observer(({ store, course }) =>(
         <FaPlusCircle size={24} />
       </DropdownToggle>
       <DropdownMenu>
-        <DropdownItem>Add Unlisted Course...</DropdownItem>
+        <DropdownItem onClick={store.courseModalState.toggleAddUnlisted}>
+          Add Unlisted Course...
+        </DropdownItem>
         <DropdownItem divider />
         <div className="search-box">
           <Dropdown
@@ -58,5 +61,6 @@ export const Prerequisites = inject('store')(observer(({ store, course }) =>(
         </div>
       </DropdownMenu>
     </ButtonDropdown>
+    <AddUnlistedModal />
   </Card>
 )));
