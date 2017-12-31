@@ -1,5 +1,6 @@
 import { action, observable } from 'mobx';
 import { serializable, identifier, list, reference, getDefaultModelSchema } from 'serializr';
+import { PrereqCourse } from './PrereqCourse';
 import { ID } from '../../utils/id';
 
 export class CourseModel {
@@ -29,6 +30,7 @@ export class CourseModel {
   credits = 0;
 
   @observable
+  @serializable(list(PrereqCourse))
   prereqs = [];
 
   constructor(
@@ -46,9 +48,6 @@ export class CourseModel {
     this.isPlaceholder = isPlaceholder;
     this.prereqs = prereqs;
     this.id = ID();
-    getDefaultModelSchema(CourseModel).props.prereqs = list(
-      reference(CourseModel)
-    );
   }
 
   @action.bound setName(newName) {
@@ -68,7 +67,7 @@ export class CourseModel {
   }
 
   @action.bound setPrereqs(newPrereqs) {
-    this.prereqs = newPrereqs;
+    this.prereqs.replace(newPrereqs);
   }
 
   @action.bound toggleIsPlaceholder() {
