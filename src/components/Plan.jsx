@@ -16,7 +16,7 @@ export const Plan = ({ plan }) => {
             <div>
               <RIEInput
                 value={plan.title}
-                change={plan.setTitle}
+                change={({ title }) => { plan.setTitle(title); }}
                 propName="title"
                 className="plan-title"
                 classEditing="inline-editing"

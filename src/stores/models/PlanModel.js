@@ -40,7 +40,7 @@ export class PlanModel {
     this.id = ID();
   }
 
-  @action.bound setTitle({ title }) {
+  @action.bound setTitle(title) {
     this.title = title;
   }
 

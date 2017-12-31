@@ -1,4 +1,4 @@
-import { swen101, swen250 } from './stubCourses';
+import { swen101, swen250 } from './stubData';
 import { observable } from 'mobx';
 import { CourseModel } from '../CourseModel';
 
@@ -19,7 +19,7 @@ describe('A Course', () => {
     expect(myCourse.dept).toEqual('SWEN');
     expect(myCourse.num).toEqual('250');
     expect(myCourse.credits).toEqual(3);
-    expect(myCourse.prereqs.length).toBe(1);
+    expect(myCourse.prereqs.length).toBe(0);
   });
 
   it('should be able to set its placeholder status', () => {

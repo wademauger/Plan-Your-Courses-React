@@ -1,5 +1,5 @@
 import { TermModel } from '../TermModel';
-import { swen101, swen250 } from './stubCourses';
+import { swen101, swen250 } from './stubData';
 
 describe('A Term', () => {
   let myTerm = new TermModel();
@@ -58,7 +58,7 @@ describe('A Term', () => {
   });
 
   it('should be able to have its name set with setTitle()', () => {
-    myTerm.setTitle({ title: 'Spring' });
+    myTerm.setTitle('Spring');
     expect(myTerm.title).toEqual('Spring');
   });
 

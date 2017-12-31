@@ -140,7 +140,7 @@ export class CourseModalState {
     // If there are no duplicate courses in the prereq list,
     // then add this course to the list
     const dupCourse = this.courseCopy.prereqs.find(thisReq => {
-        ((thisReq.dept === prereq.dept) && (thisReq.num === prereq.num))
+       return (thisReq.dept === prereq.dept) && (thisReq.num === prereq.num);
     });
     if (!dupCourse) this.courseCopy.prereqs.push(prereq);
   }

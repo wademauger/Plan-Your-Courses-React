@@ -34,7 +34,7 @@ export const Year = ({ year }) => {
                       <CardHeader className="title">
                         <RIEInput
                           value={year.title}
-                          change={year.setTitle}
+                          change={({ title }) => { year.setTitle(title); }}
                           propName="title"
                           classEditing="year-title-editing inline-editing"
                           validate={inlineValidate}

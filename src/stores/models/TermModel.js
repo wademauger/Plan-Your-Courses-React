@@ -24,7 +24,7 @@ export class TermModel {
     this.id = ID();
   }
 
-  @action.bound setTitle({ title }) {
+  @action.bound setTitle(title) {
     this.title = title;
   }
 

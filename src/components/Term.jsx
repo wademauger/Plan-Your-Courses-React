@@ -45,7 +45,7 @@ export const Term = ({ term }) => {
                       >
                         <RIEInput
                           value={term.title}
-                          change={term.setTitle}
+                          change={({ title }) => { term.setTitle(title); }}
                           propName="title"
                           classEditing="term-title-editing-box inline-editing"
                           validate={inlineValidate}
