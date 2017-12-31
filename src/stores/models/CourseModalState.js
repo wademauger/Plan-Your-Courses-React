@@ -28,6 +28,9 @@ export class CourseModalState {
   @observable
   previewColor;
 
+  @observable
+  addPrereqStage = [];
+
   creditsInputRef;
 
   constructor(plan) {
@@ -43,7 +46,14 @@ export class CourseModalState {
   @action toggleIsOpen(course) {
     if (!this.isOpen) {
       // if it hadn't been opened, initialize first
-      this.init(course);
+      if (course) {
+        this.init(course);
+      }
+    } else {
+      // if it had been opened, collapes the sections
+      this.advancedIsOpen = false;
+      this.prereqsIsOpen = false;
+      this.prereqPickerIsOpen = false;
     }
     this.isOpen = !this.isOpen;
   }
@@ -67,7 +77,8 @@ export class CourseModalState {
       course.dept,
       course.num,
       course.credits,
-      course.prereqs
+      course.isPlaceholder,
+      course.prereqs,
     ));
     this.previewColor = this.planRef.colorScheme.get(course.dept);
   }
@@ -112,9 +123,24 @@ export class CourseModalState {
     this.courseRef.setNum(this.courseCopy.num);
     this.courseRef.setCredits(this.courseCopy.credits);
     this.courseRef.setPrereqs(this.courseCopy.prereqs);
+    this.courseRef.setIsPlaceholder(this.courseCopy.isPlaceholder);
     this.planRef.colorScheme.set(this.courseRef.dept, this.previewColor);
-    this.isOpen = false;
-    return false;
+    this.toggleIsOpen();
+  }
+
+  @action handleAddStagedPrereq(event, data) {
+    this.addPrereqStage.replace(data.value);
+  }
+
+  @action commitStagedPrereqs() {
+    const dedupedStage = this.addPrereqStage.filter(stagedReq => {
+      const foundDup = this.courseCopy.prereqs.find(req => req.id === stagedReq.id)
+      if (!foundDup) return true;
+    });
+    const mergedStage = Array.concat(dedupedStage, this.courseCopy.prereqs.peek());
+    this.courseCopy.prereqs.replace(mergedStage);
+    this.addPrereqStage = [];
+    this.togglePrereqPicker();
   }
 
 }

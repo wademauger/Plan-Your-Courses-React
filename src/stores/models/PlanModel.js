@@ -167,7 +167,9 @@ export class PlanModel {
       year.terms.forEach(term => {
         term.courses.forEach(course => {
           const courseCode = course.getCourseCode();
-          return { key: courseCode, value: course.id, text: courseCode };
+          if (!course.isPlaceholder) {
+            allCourses.push({ key: course.id, value: course, text: courseCode });
+          }
         });
       });
     });

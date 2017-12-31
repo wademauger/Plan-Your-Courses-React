@@ -12,9 +12,11 @@ import {
   Modal,
   ModalHeader,
   ModalBody,
-  ModalFooter } from 'reactstrap';
+  ModalFooter,
+  UncontrolledTooltip } from 'reactstrap';
+import { Checkbox } from 'semantic-ui-react';
 import { ChromePicker } from 'react-color';
-import { FaCaretUp, FaCaretDown } from 'react-icons/lib/fa';
+import { FaCaretUp, FaCaretDown, FaQuestionCircleO } from 'react-icons/lib/fa';
 import { CoursePreview } from './CoursePreview';
 import { Prerequisites } from './CoursePrerequisites';
 import '../../styles/objects.CourseModal.scss';
@@ -29,7 +31,11 @@ export const CourseModal = inject('store')(observer(({ store: {courseModalState}
       onKeyDown={(e) => {
         if (e.key === 'Enter') {
           e.preventDefault();
-          courseModalState.saveChanges.bind(courseModalState)();
+          if (courseModalState.prereqPickerIsOpen) {
+            console.log('execute add prereqs');
+          } else {
+            courseModalState.saveChanges.bind(courseModalState)();
+          }
         }
       }}
       onSubmit={(e) => {
@@ -130,6 +136,24 @@ export const CourseModal = inject('store')(observer(({ store: {courseModalState}
             <CardBody>
 
               <FormGroup row>
+                <Label for="creditsInput" sm={6}>
+                  Placeholder Course
+                  <FaQuestionCircleO id="placeholderTooltip" />
+                  <UncontrolledTooltip target="placeholderTooltip">
+                    Placeholder courses are courses for which an exact course code may not be known.
+                    If turned on, this course will not show up in searches for prerequisite courses.
+                  </UncontrolledTooltip>
+                </Label>
+                <Col sm={4}>
+                  <Checkbox
+                    toggle
+                    checked={courseModalState.courseCopy.isPlaceholder}
+                    onChange={courseModalState.courseCopy.toggleIsPlaceholder.bind(courseModalState)}
+                  />
+                </Col>
+              </FormGroup>
+
+              <FormGroup row>
                 <Label for="creditsInput" sm={6}>Color</Label>
                 <Col sm={4}>
                   <ChromePicker
@@ -159,7 +183,7 @@ export const CourseModal = inject('store')(observer(({ store: {courseModalState}
           type="submit"
         >
           Save
-        </Button>{' '}
+        </Button>
       </ModalFooter>
     </Form>
   </Modal>

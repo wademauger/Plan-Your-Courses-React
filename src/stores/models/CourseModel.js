@@ -9,6 +9,10 @@ export class CourseModel {
   name = '';
 
   @observable
+  @serializable
+  isPlaceholder = false;
+
+  @observable
   @serializable(identifier())
   id = '';
 
@@ -32,12 +36,14 @@ export class CourseModel {
     dept = 'DEPT',
     num  = '000',
     credits = 3,
+    isPlaceholder = false,
     prereqs = [],
   ) {
     this.name = name;
     this.dept = dept;
     this.num = num;
     this.credits = credits;
+    this.isPlaceholder = isPlaceholder;
     this.prereqs = prereqs;
     this.id = ID();
     getDefaultModelSchema(CourseModel).props.prereqs = list(
@@ -63,6 +69,14 @@ export class CourseModel {
 
   @action.bound setPrereqs(newPrereqs) {
     this.prereqs = newPrereqs;
+  }
+
+  @action.bound toggleIsPlaceholder() {
+    this.isPlaceholder = !this.isPlaceholder;
+  }
+
+  @action.bound setIsPlaceholder(newState) {
+    this.isPlaceholder = newState;
   }
 
   @action removePrereq(prereq) {

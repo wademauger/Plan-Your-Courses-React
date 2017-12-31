@@ -33,9 +33,10 @@ export class TermModel {
     dept = 'DEPT',
     num = '101',
     credits = 3,
+    isPlaceholder = false,
     prereqs = [],
   ) {
-    this.courses.push(new CourseModel(name, dept, num, credits, prereqs));
+    this.courses.push(new CourseModel(name, dept, num, credits, isPlaceholder, prereqs));
     this.id = ID();
   }
 

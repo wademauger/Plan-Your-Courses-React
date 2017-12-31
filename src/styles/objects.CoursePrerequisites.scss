@@ -4,14 +4,17 @@
   margin-top: 10px; 
   padding: 6px;
   flex-direction: row!important;
+  flex-wrap: wrap;
+  align-items: center;
 
   .btn-group {
     margin: 4px;
   }
 
-  .btn {
+  .add-course-btn .btn-secondary {
     width: $course-box-width;
     height: $course-box-height;
+    margin-left: 9px;
     border-radius: 0;
   }
 
@@ -21,6 +24,20 @@
 
   .dropdown-menu {
     padding: 4px;
-    width: 300px;
+    width: 350px;
+  }
+
+  .search-box {
+    display:flex;
+
+    .dropdown {
+      flex: 6;
+      margin-right: 4px;
+    }
+
+    .btn {
+      flex: 1;
+      max-height: 38px;
+    }
   }
 }
