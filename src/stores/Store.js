@@ -1,5 +1,3 @@
-// @flow
-
 import { action, observable } from 'mobx';
 import { PlanModel } from './models/PlanModel';
 import { CourseModalState } from './models/CourseModalState';
