@@ -73,7 +73,7 @@
     "chimp": "^0.50.2",
     "clean-webpack-plugin": "^0.1.9",
     "color": "^0.11.1",
-    "enzyme": "^2.9.1",
+    "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "eslint": "^2.9.0",
     "eslint-config-airbnb": "^8.0.0",
@@ -101,13 +101,23 @@
   },
   "env": {
     "test": {
-      "plugins": ["transform-es2015-modules-commonjs", "dynamic-import-node"]
+      "plugins": [
+        "transform-es2015-modules-commonjs",
+        "dynamic-import-node"
+      ]
     }
   },
   "jest": {
     "automock": false,
-    "moduleFileExtensions": ["js", "jsx"],
-    "moduleDirectories": ["node_modules", "bower_components", "shared"],
+    "moduleFileExtensions": [
+      "js",
+      "jsx"
+    ],
+    "moduleDirectories": [
+      "node_modules",
+      "bower_components",
+      "shared"
+    ],
     "unmockedModulePathPatterns": [
       "<rootDir>/node_modules/core-js",
       "react",
@@ -116,7 +126,8 @@
     "moduleNameMapper": {
       "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
       "\\.(css|less|scss|sass)$": "<rootDir>/__mocks__/styleMock.js"
-    }
+    },
+    "setupTestFrameworkScriptFile": "<rootDir>/setupTests.js"
   },
   "license": "MIT"
 }
