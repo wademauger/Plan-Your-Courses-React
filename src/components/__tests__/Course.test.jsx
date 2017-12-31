@@ -21,11 +21,11 @@ jest.mock('react-beautiful-dnd', () => ({
 }));
 
 describe('<Course />', () => {
-  it('Should render with a default Course Model', () => {
-    const myCourseModel = new CourseModel('SW Architectures & Requirements', 'SWEN', '444', 3);
-    const myStore = new Store();
-    const wrapper = mount(<Course course={myCourseModel} store={myStore} />);
+  const myCourseModel = new CourseModel('SW Architectures & Requirements', 'SWEN', '444', 3);
+  const myStore = new Store();
+  const wrapper = mount(<Course course={myCourseModel} store={myStore} />);
 
+  it('Should render with a default Course Model', () => {
     expect(wrapper.find('.header-text').text()).toBe(`${myCourseModel.dept} ${myCourseModel.num}`);
     expect(wrapper.find('.name').text()).toBe(myCourseModel.name);
     expect(wrapper.find('.credits').text()).toBe(`[${myCourseModel.credits}]`);
