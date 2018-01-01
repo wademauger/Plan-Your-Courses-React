@@ -45,6 +45,7 @@
     "semantic-ui-react": "^0.77.1",
     "serializr": "^1.1.14",
     "style-loader": "^0.13.1",
+    "uglifyjs-webpack-plugin": "^1.1.5",
     "webpack": "^3.10.0"
   },
   "devDependencies": {
@@ -95,7 +96,6 @@
     "regenerator-runtime": "^0.11.1",
     "riek": "^1.1.0",
     "sass-loader": "^6.0.6",
-    "uglifyjs-webpack-plugin": "^1.1.5",
     "webpack-dev-server": "^1.14.1",
     "webpack-hot-middleware": "^2.10.0"
   },
