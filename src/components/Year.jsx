@@ -1,16 +1,25 @@
-// @flow
-
 import React from 'react';
 import { Observer } from 'mobx-react';
 import { Draggable, Droppable } from 'react-beautiful-dnd';
-import { Button, Card, CardHeader, CardBody } from 'reactstrap';
+import {
+  Button,
+  Card,
+  CardHeader,
+  CardBody,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+  UncontrolledDropdown } from 'reactstrap';
 import { Term } from './Term';
 import { RIEInput } from 'riek';
+import { FaEllipsisH, FaPlus } from 'react-icons/lib/fa';
+import { IoClose } from 'react-icons/lib/io';
 import { inlineValidate } from '../utils/inlineValidate';
 import '../styles/objects.Year.scss';
 import '../styles/utilities.InlineEdit.scss';
 
-export const Year = ({ year, colorScheme }) => {
+
+export const Year = ({ year }) => {
   return (
     <Draggable
       draggableId={year.id}
@@ -34,17 +43,32 @@ export const Year = ({ year, colorScheme }) => {
                   {() => (
                     <Card className="year">
                       <CardHeader className="title">
-                        <RIEInput
-                          value={year.title}
-                          change={year.setTitle}
-                          propName="title"
-                          classEditing="year-title-editing inline-editing"
-                          validate={inlineValidate}
-                        />
-                        <Button
-                          color="link"
-                          onClick={() => year.addTerm()}
-                        >+</Button>
+                        <div className="year-title">
+                          <RIEInput
+                            value={year.title}
+                            change={({ title }) => { year.setTitle(title); }}
+                            propName="title"
+                            classEditing="year-title inline-editing"
+                            validate={inlineValidate}
+                          />
+                        </div>
+                        <UncontrolledDropdown className="year-options">
+                          <DropdownToggle>
+                            <FaEllipsisH />
+                          </DropdownToggle>
+                          <DropdownMenu>
+                            <DropdownItem
+                              onClick={() => year.addTerm()}
+                            >
+                              <FaPlus />
+                              Add A New Term
+                            </DropdownItem>
+                            <DropdownItem>
+                              <IoClose />
+                              Delete Year
+                            </DropdownItem>
+                          </DropdownMenu>
+                        </UncontrolledDropdown>
                       </CardHeader>
                       <div
                         className="YEAR-TERM-DROPPABLE"
@@ -59,7 +83,6 @@ export const Year = ({ year, colorScheme }) => {
                               key={term.id}
                               courses={term.courses}
                               term={term}
-                              colorScheme={colorScheme}
                             />
                           )}
                           {droppableProvided.placeholder}

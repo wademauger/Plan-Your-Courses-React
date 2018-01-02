@@ -1,13 +1,17 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { AppContainer } from 'react-hot-loader';
-import a11y  from 'react-a11y';
 import { Store } from './stores/Store';
 import { App } from './components/App';
+import a11y  from 'react-a11y';
 import 'bootstrap/dist/css/bootstrap.css';
+import { SE } from './seed/SE';
 
 const env = process.env.NODE_ENV;
 const store = new Store();
+
+// FOR DEVELOPMENT ONLY,
+// DELETE THIS BEFORE RELEASE
+store.seed(SE);
 window.store = store;
 
 if(env === 'dev') {
@@ -15,20 +19,6 @@ if(env === 'dev') {
 }
 
 render(
-  <AppContainer>
-    <App store={store} />
-  </AppContainer>,
+  <App store={store} />,
   document.getElementById('root')
 );
-
-if (module.hot) {
-  module.hot.accept('./components/App.js', () => {
-    let AppNext = require('./components/App').default;
-    render(
-      <AppContainer>
-        <AppNext store={store} />
-      </AppContainer>,
-      document.getElementById('root')
-    );
-  });
-}
