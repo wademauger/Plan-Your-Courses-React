@@ -1,3 +1,7 @@
+const graphqlExpress = require('graphql-server-express').graphqlExpress;
+const graphiqlExpress = require('graphql-server-express').graphiqlExpress;
+const schema = require('./server/schema');
+
 const path = require('path');
 const bodyParser     = require('body-parser');
 const methodOverride = require('method-override');
@@ -27,6 +31,14 @@ if(env === 'dev') {
     },
   }));
 }
+
+app.use('/graphql', bodyParser.json(), graphqlExpress({
+  schema
+}));
+
+app.use('/graphiql', graphiqlExpress({
+  endpointURL: '/graphql'
+}));
 
 app.get('*', (req, res) => {
   res.sendFile(__dirname + '/index.html');

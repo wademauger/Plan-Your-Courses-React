@@ -7,7 +7,22 @@ import { inlineValidate } from '../utils/inlineValidate';
 import '../styles/objects.Plan.scss';
 import '../styles/utilities.InlineEdit.scss';
 
-export const Plan = ({ plan }) => {
+export const Plan = ({ data: { loading, error, plans } }) => {
+  if(loading) {
+    return <p>Loading Plan...</p>;
+  }
+
+  if(error) {
+    return <p>{error.message}</p>;
+  }
+
+  if(!plans) {
+    return <p>Fuck off</p>;
+  }
+
+  let plan = plans[0];
+  plan.years = [];
+
   return (
     <Droppable droppableId={plan.title} type="PLAN-YEAR" direction="horizontal">
       {(provided) => (
