@@ -17,7 +17,7 @@ if (env === 'dev') {
         'babel-polyfill',
         'webpack-dev-server/client?http://' + host + ':' + port,
         'webpack/hot/only-dev-server',
-        './src/index',
+        './client/index',
     ],
     output: {
       path: path.join(__dirname, 'dist'),
@@ -40,7 +40,7 @@ if (env === 'dev') {
     },
     module: {
       loaders: [
-        { test: /\.jsx?$/, exclude: /node_modules/, loaders: ['babel-loader', 'eslint-loader'], include: path.join(__dirname, 'src')},
+        { test: /\.jsx?$/, exclude: /node_modules/, loaders: ['babel-loader', 'eslint-loader'], include: path.join(__dirname, 'client')},
         { test: /\.(scss|css)$/, loaders: ['style-loader', 'css-loader', 'sass-loader']},
       ],
     },
@@ -48,7 +48,7 @@ if (env === 'dev') {
 } else {
   module.exports = {
     devtool: 'cheap-module-source-map',
-    entry: './src/index',
+    entry: './client/index',
     output: {
       path: path.join(__dirname, 'dist'),
       filename: 'bundle.js',
@@ -61,7 +61,7 @@ if (env === 'dev') {
     },
     resolve: {
       modules: [
-        'src',
+        'client',
         'node_modules',
       ],
       extensions: ['*', '.json', '.js', '.jsx'],
