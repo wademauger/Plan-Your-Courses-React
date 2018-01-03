@@ -7,7 +7,7 @@ import { inlineValidate } from '../utils/inlineValidate';
 import '../styles/objects.Plan.scss';
 import '../styles/utilities.InlineEdit.scss';
 
-export const Plan = ({ data: { loading, error, plans } }) => {
+export const Plan = ({ data: { loading, error, plan } }) => {
   if(loading) {
     return <p>Loading Plan...</p>;
   }
@@ -16,11 +16,10 @@ export const Plan = ({ data: { loading, error, plans } }) => {
     return <p>{error.message}</p>;
   }
 
-  if(!plans) {
+  if(plan === null) {
     return <p>Fuck off</p>;
   }
 
-  let plan = plans[0];
   plan.years = [];
 
   return (

@@ -8,6 +8,7 @@ type Plan {
 
 type Query {
   plans: [Plan]
+  plan(id: ID!): Plan
 }
 
 `
