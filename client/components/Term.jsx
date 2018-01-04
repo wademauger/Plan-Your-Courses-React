@@ -7,8 +7,31 @@ import { RIEInput } from 'riek';
 import { inlineValidate } from '../utils/inlineValidate';
 import '../styles/objects.Term.scss';
 import '../styles/utilities.InlineEdit.scss';
+import gql from 'graphql-tag';
+import { graphql } from 'react-apollo';
 
-export const Term = ({ term }) => {
+const termQuery = gql`
+  query TermQuery($termId: ID!) {
+    term(id: $termId) {
+      id
+      title
+      courses {
+        id
+        credits
+      }
+    }
+  }
+`;
+
+const TermComponent = ({ data: { loading, error, term } }) => {
+  if(loading) {
+    return <p>Loading term...</p>;
+  }
+
+  if(error) {
+    return <p>{error.message}</p>;
+  }
+
   return (
     <div className="term">
       <Draggable
@@ -86,4 +109,8 @@ export const Term = ({ term }) => {
   );
 };
 
-Term.displayName = 'Term';
+export const Term = graphql(termQuery, {
+  options: (props) => ({
+    variables: { termId: props.term.id },
+  }),
+})(TermComponent);

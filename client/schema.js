@@ -31,6 +31,9 @@ type Plan {
 type Query {
   plans: [Plan]
   plan(id: ID!): Plan
+  year(id: ID!): Year
+  term(id: ID!): Term
+  course(id: ID!): Course
 }
 
 `;

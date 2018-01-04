@@ -7,8 +7,31 @@ import { RIEInput } from 'riek';
 import { inlineValidate } from '../utils/inlineValidate';
 import '../styles/objects.Year.scss';
 import '../styles/utilities.InlineEdit.scss';
+import gql from 'graphql-tag';
+import { graphql } from 'react-apollo';
 
-export const Year = ({ year }) => {
+const yearQuery = gql`
+  query YearQuery($yearId: ID!) {
+    year(id: $yearId) {
+      id
+      title
+      terms {
+        id
+      }
+    }
+  }
+`;
+
+
+const YearComponent = ({ data: { loading, error, year } }) => {
+  if(loading) {
+    return <p>Loading year...</p>;
+  }
+
+  if(error) {
+    return <p>{error.message}</p>;
+  }
+
   return (
     <Draggable
       draggableId={year.id}
@@ -75,4 +98,8 @@ export const Year = ({ year }) => {
   );
 };
 
-Year.displayName = 'Year';
+export const Year = graphql(yearQuery, {
+  options: (props) => ({
+    variables: { yearId: props.year.id },
+  }),
+})(YearComponent);

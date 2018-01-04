@@ -16,24 +16,6 @@ const planQuery = gql`
       title
       years {
         id
-        title
-        terms {
-          id
-          title
-          courses {
-            id
-            name
-            dept
-            num
-            credits
-            isPlaceholder
-            prereqs {
-              id
-              dept
-              num
-            }
-          }
-        }
       }
     }
   }
