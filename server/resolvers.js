@@ -1,3 +1,4 @@
+const SE = require('./SEED');
 const dummyPlans = [
   {
     id: '1',
@@ -10,6 +11,8 @@ const dummyPlans = [
     years: [],
   }
 ];
+
+dummyPlans.push(SE);
 
 module.exports = {
   Query: {

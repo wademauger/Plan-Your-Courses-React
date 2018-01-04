@@ -1,7 +1,7 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
-import { DragDropContext } from 'react-beautiful-dnd';
 import { Plan } from './Plan';
+import DragDropMaster from './DragDropMaster';
 import { CourseModal } from './editCourseModal/CourseModal';
 import { Trash } from './Trash';
 import '../styles/objects.Workspace.scss';
@@ -14,27 +14,58 @@ const planQuery = gql`
     plan(id: $planId) {
       id
       title
-      years
+      years {
+        id
+        title
+        terms {
+          id
+          title
+          courses {
+            id
+            name
+            dept
+            num
+            credits
+            isPlaceholder
+            prereqs {
+              id
+              dept
+              num
+            }
+          }
+        }
+      }
     }
   }
 `;
 
-const PlanWithData = graphql(planQuery, {
+
+
+const WorkspaceComponent = ({ data: { loading, error, plan } }) => {
+  if(loading) {
+    return <p>Loading...</p>;
+  }
+
+  if(error) {
+    return <p>{error.message}</p>;
+  }
+
+  return (
+    <div className="workspace">
+      <DragDropMaster plan={ plan }>
+        <Plan plan={ plan } />
+        <CourseModal />
+        <Trash />
+      </DragDropMaster>
+    </div>
+  );
+};
+
+WorkspaceComponent.displayName = 'Workspace';
+
+
+export const Workspace = graphql(planQuery, {
   options: (props) => ({
-    variables: { planId: 1 },
+    variables: { planId: 'SEED' },
   }),
-})(Plan);
-
-export const Workspace = inject('store')(observer(({ store }) => (
-  <div className="workspace">
-    <DragDropContext
-      onDragEnd={store.mainPlan.handleDragDrop.bind(store.mainPlan)}
-    >
-      <PlanWithData />
-      <CourseModal />
-      <Trash />
-    </DragDropContext>
-  </div>
-)));
-
-Workspace.displayName = 'Workspace';
+})(WorkspaceComponent);

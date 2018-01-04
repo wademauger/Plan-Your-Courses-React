@@ -85,7 +85,7 @@ export class PlanModel {
     let year;
     this.years.forEach((thisYear, yearIndex) => {
       if (thisYear.id === yearId) {
-        year = new YearLocation(thisYear, yearIndex);
+        year = YearLocation(thisYear, yearIndex);
       }
     });
     return year;

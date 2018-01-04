@@ -11,7 +11,7 @@ const port = process.env.PORT || 3000;
 
 if (env === 'dev') {
   module.exports = {
-    devtool: 'source-maps',
+    devtool: 'eval-source-map',
     entry: [
         'react-hot-loader/patch',
         'babel-polyfill',
